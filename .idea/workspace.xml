@@ -5,17 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb061b1f-3f96-4e4f-87e9-22c54964e64a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Comments.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ImagePost.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Post.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/RedSocial.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/TextPost.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/VideoPost.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Comentario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Imagen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Texto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Usuario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Video.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Comments.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ImagePost.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/RedSocial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RedSocial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/TextPost.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/VideoPost.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +58,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "Application.RedSocial.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -63,7 +67,14 @@
     "last_opened_file_path": "C:/MASTER/workspace/Red_social"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Red_social" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="RedSocial" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="RedSocial" />
       <module name="Red_social" />
@@ -73,6 +84,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.RedSocial" />
       </list>
     </recent_temporary>

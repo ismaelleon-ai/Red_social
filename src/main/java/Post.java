@@ -1,60 +1,33 @@
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class Post {
+public abstract class Post {
+    private Date fecha;
+    private List<Comentario> comentarios;
 
-
-    protected LocalDateTime date;
-    private List<Comments> comments;
-
-
-    public Post(LocalDateTime date, List<Comments> comments) {
-        this.date = date;
-        this.comments = comments;
+    public Post() {
+        this.fecha = new Date();
+        this.comentarios = new ArrayList<>();
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public List<Comentario> getComentarios() {
+        return comentarios;
     }
 
-    public void addComments(Comments comment) {
-        comments.add(comment);
+    public void agregarComentario(Comentario comentario) {
+        comentarios.add(comentario);
     }
 
-    public int countComments() {
-        return comments.size();
+    public void eliminarComentario(Comentario comentario) {
+        comentarios.remove(comentario);
     }
 
-    public void deleteComments(Comments comment) {
-        comments.remove(comment);
+    public int contarComentarios() {
+        return comentarios.size();
     }
-
-    @Override
-    public String toString() {
-        return "Post realizado el " + date + " con " + countComments() + " comentarios.";
-    }
-
-    public List<Comments> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comments> comments) {
-        this.comments = comments;
-    }
-
-    public List<Comments> getUserComments(User user){
-        List<Comments> result = new ArrayList<>();
-        for (Comments comments1: comments){
-            if (comments1.getCreator()==user){
-                result.add(comments1);
-            }
-        }
-        return result;
-    }
-
 }
