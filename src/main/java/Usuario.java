@@ -30,7 +30,7 @@ public class Usuario {
         }
     }
 
-    public void dejarDeSeguir(String usuario) {
+    public void dejarDeSeguir(Usuario usuario) {
         siguiendo.remove(usuario);
     }
 

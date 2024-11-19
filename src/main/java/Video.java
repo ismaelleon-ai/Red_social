@@ -16,7 +16,7 @@ public class Video extends Post {
 
     @Override
     public String toString() {
-        return "Video: " + titulo + " (" + calidad + "p, " + duracion + "s)";
+        return "Video: " + titulo + " (" + calidad + "p, " + duracion + "mins)";
     }
 }
 

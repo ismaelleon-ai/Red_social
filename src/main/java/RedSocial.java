@@ -8,6 +8,20 @@ public class RedSocial {
         this.usuarios = new ArrayList<>();
     }
 
+    public void popularRedSocial(){
+        Usuario usuario1 = new Usuario("aperez");
+        usuario1.agregarPost(new Texto("¡Hola mundo!"));
+        usuario1.agregarPost(new Texto("S.O.S."));
+        agregarUsuario(usuario1);
+        Usuario usuario2 = new Usuario("alojo");
+        usuario2.agregarPost(new Texto("Prueba número 11201223013."));
+        agregarUsuario(usuario2);
+        Usuario usuario3 = new Usuario("agarcia");
+        usuario3.agregarPost(new Imagen("Amanecer en la montaña", 1920, 1080));
+        usuario3.agregarPost(new Video("Tutorial de Java", 720, 300));
+        agregarUsuario(usuario3);
+    }
+
     public void mostrarUsuarios() {
         if (usuarios.isEmpty()) {
             System.out.println("No hay usuarios en la red social.");
