@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class RedSocial {
     private List<Usuario> usuarios;
@@ -34,7 +35,21 @@ public class RedSocial {
     }
 
     public void agregarUsuario(Usuario usuario) {
-        usuarios.add(usuario);
+        if (existeUsuario(usuario.getNombre())) {
+            System.out.println("El usuario \"" + usuario.getNombre() + "\" ya existe en la red social. No se puede añadir.");
+        } else {
+            usuarios.add(usuario);
+
+        }
+    }
+
+    public boolean existeUsuario(String nombre) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getNombre().equals(nombre)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void eliminarUsuario(Usuario usuario) {

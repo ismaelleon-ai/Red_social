@@ -2,6 +2,7 @@ import java.util.Scanner;
 //13:42 19/11
 public class Main {
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
         RedSocial redSocial = new RedSocial();
         redSocial.popularRedSocial();
@@ -40,7 +41,6 @@ public class Main {
                     String nombreUsuarioAñadir = scanner.nextLine();
                     Usuario usuario = new Usuario(nombreUsuarioAñadir);
                     redSocial.agregarUsuario(usuario);
-                    System.out.println("Usuario agregado.");
                     break;
                 }
                 //Eliminar usuario
@@ -180,16 +180,28 @@ public class Main {
                 }
                 //Listar comentarios
                 case 8:{
-                    System.out.print("¿De qué usuario quiere ver comentarios?");
-                    String nombreUsuarioListarCom = scanner.nextLine();
-                    Usuario usuario = redSocial.buscarUsuario(nombreUsuarioListarCom);
+                    System.out.print("¿De qué usuario quiere consultar post? ");
+                    String nombreUsuarioListar = scanner.nextLine();
+                    Usuario usuario = redSocial.buscarUsuario(nombreUsuarioListar);
+
                     if (usuario != null) {
-                        redSocial.listarComentarios(usuario);
+                        System.out.println("Seleccione el número del post:");
+                        for (int i = 0; i < usuario.getPosts().size(); i++) {
+                            System.out.println(i + ": " + usuario.getPosts().get(i));
+                        }
+                        int postIndex = scanner.nextInt();
+
+                        if (postIndex >= 0 && postIndex < usuario.getPosts().size()) {
+                            Post post = usuario.getPosts().get(postIndex);
+                            redSocial.listarComentarios(usuario);
+                        } else {
+                            System.out.println("Número de post no válido.");
+                        }
                     } else {
                         System.out.println("Usuario no encontrado.");
                     }
-                    break;
                 }
+                break;
                 //Contar comentarios
                 case 9:{
                     System.out.print("¿De qué usuario quiere consultar post? ");
@@ -213,6 +225,7 @@ public class Main {
                         System.out.println("Usuario no encontrado.");
                     }
                 }
+                break;
                 //Mostrar usuarios
                 case 10:{
                     redSocial.mostrarUsuarios();
