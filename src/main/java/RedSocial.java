@@ -71,12 +71,19 @@ public class RedSocial {
         }
     }
 
-    public void listarComentarios(Usuario usuario) {
-        for (Post post : usuario.getPosts()) {
-            for (Comentario comentario : post.getComentarios()) {
-                System.out.println(comentario);
+    public void listarComentarios(Usuario usuarioAutenticado) {
+
+        for (Usuario usuario : usuarios) {
+            for (Post post : usuario.getPosts()) {
+                for (Comentario comentario : post.getComentarios()) {
+                    if (comentario != null) {
+                        System.out.println("- En el post: " + post + " de " + usuario.getNombre() + " -> " + comentario.getTexto());
+
+                    } else {
+                        System.out.println("No realizó ningún comentario.");
+                    }
+                }
             }
         }
     }
-
 }

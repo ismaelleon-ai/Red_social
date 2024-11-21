@@ -180,28 +180,9 @@ public class Main {
                 }
                 //Listar comentarios
                 case 8:{
-                    System.out.print("¿De qué usuario quiere consultar post? ");
-                    String nombreUsuarioListar = scanner.nextLine();
-                    Usuario usuario = redSocial.buscarUsuario(nombreUsuarioListar);
-
-                    if (usuario != null) {
-                        System.out.println("Seleccione el número del post:");
-                        for (int i = 0; i < usuario.getPosts().size(); i++) {
-                            System.out.println(i + ": " + usuario.getPosts().get(i));
-                        }
-                        int postIndex = scanner.nextInt();
-
-                        if (postIndex >= 0 && postIndex < usuario.getPosts().size()) {
-                            Post post = usuario.getPosts().get(postIndex);
-                            redSocial.listarComentarios(usuario);
-                        } else {
-                            System.out.println("Número de post no válido.");
-                        }
-                    } else {
-                        System.out.println("Usuario no encontrado.");
-                    }
+                    redSocial.listarComentarios(usuarioAutenticado);
+                    break;
                 }
-                break;
                 //Contar comentarios
                 case 9:{
                     System.out.print("¿De qué usuario quiere consultar post? ");
@@ -249,4 +230,5 @@ public class Main {
 
         scanner.close();
     }
+
 }
