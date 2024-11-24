@@ -4,9 +4,26 @@ import java.util.Scanner;
 
 public class RedSocial {
     private List<Usuario> usuarios;
+    private Usuario activeUser;
 
     public RedSocial() {
         this.usuarios = new ArrayList<>();
+    }
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public Usuario getActiveUser() {
+        return activeUser;
+    }
+
+    public void setActiveUser(Usuario activeUser) {
+        this.activeUser = activeUser;
     }
 
     public void popularRedSocial(){
@@ -21,6 +38,31 @@ public class RedSocial {
         usuario3.agregarPost(new Imagen("Amanecer en la montaña", 1920, 1080));
         usuario3.agregarPost(new Video("Tutorial de Java", 720, 300));
         agregarUsuario(usuario3);
+    }
+
+    public Usuario logOut () {
+        if (activeUser != null) {
+            System.out.println("Adiós, " + activeUser.getNombre() + ". Has cerrado sesión correctamente.");
+            return null;
+        } else {
+            System.out.println("No hay ningún usuario autenticado.");
+            return null;
+        }
+    }
+
+    public Usuario logIn(String loginName) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Introduce tu nombre de usuario para iniciar sesión: ");
+        String nombreUsuario = scanner.nextLine();
+
+        for (Usuario usuario : usuarios) {
+            if (usuario.getNombre().equalsIgnoreCase(nombreUsuario)) {
+                System.out.println("¡Bienvenido, " + usuario.getNombre() + "!");
+                return usuario; // Devuelve el usuario autenticado
+            }
+        }
+        System.out.println("El usuario \"" + nombreUsuario + "\" no está registrado. Por favor, regístrate o intenta con otro nombre.");
+        return null;
     }
 
     public void mostrarUsuarios() {
