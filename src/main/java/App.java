@@ -2,32 +2,42 @@ import java.util.Scanner;
 //15:21 21/11
 public class App {
 
-    public void logMenu() {
+    public void logMenu(RedSocial redSocial) {
         Scanner scanner = new Scanner(System.in);
-        RedSocial redSocial = new RedSocial();
 
         int opcion;
         do {
 
             System.out.println("\nSeleccione una opción:");
             System.out.println("1. Iniciar sesión");
-            System.out.println("2. Salir");
+            System.out.println("2. Registrarse");
+            System.out.println("3. Salir");
             opcion = scanner.nextInt();
             scanner.nextLine();
             switch (opcion) {
-                case 1: {
-                    String nombreLogin = Utils.string("Hola");
-                    redSocial.logIn(nombreLogin);
-                    mainMenu(redSocial,scanner);
+                case 1:{
+                    if (redSocial.getActiveUser()==null){
+                        redSocial.logIn();
+                        if (redSocial.getActiveUser()!=null){
+                        mainMenu(redSocial,scanner);
+                        }
+                        break;
+                    }
                 }
                 case 2: {
+                    String registerName = Utils.string("Ingrese su nombre de usuario: ");
+                    redSocial.registerUser(registerName);
+                    mainMenu(redSocial, scanner);
+                    break;
+                }
+                case 3: {
                     System.out.println("Saliendo...");
                     break;
                 }
                 default:
                     System.out.println("Opción no válida.");
             }
-        } while (opcion != 2);
+        } while (opcion != 3);
     }
 
     public static void mainMenu (RedSocial redSocial, Scanner scanner) {
@@ -58,18 +68,18 @@ public class App {
                     case 1: {
                         System.out.print("Nombre del usuario:");
                         String nombreUsuarioAñadir = scanner.nextLine();
-                        Usuario usuario = new Usuario(nombreUsuarioAñadir);
-                        redSocial.agregarUsuario(usuario);
+                        User user = new User(nombreUsuarioAñadir);
+                        redSocial.addUsers(user);
                         break;
                     }
                     //Eliminar usuario
                     case 2: {
                         System.out.println("Elija usuario a eliminar:");
-                        redSocial.mostrarUsuarios();
+                        redSocial.showUsers();
                         String nombreUsuarioEliminar = scanner.nextLine();
-                        Usuario usuario = redSocial.buscarUsuario(nombreUsuarioEliminar);
-                        if (usuario != null) {
-                            redSocial.eliminarUsuario(usuario);
+                        User user = redSocial.buscarUsuario(nombreUsuarioEliminar);
+                        if (user != null) {
+                            redSocial.deleteUsers(user);
                             System.out.println("Usuario eliminado.");
                         } else {
                             System.out.println("Usuario no encontrado.");
@@ -80,11 +90,11 @@ public class App {
                     case 3: {
                         System.out.print("¿A quién desea seguir?");
                         String nombreSeguir = scanner.nextLine();
-                        Usuario usuarioASeguir = redSocial.buscarUsuario(nombreSeguir);
+                        User userASeguir = redSocial.buscarUsuario(nombreSeguir);
 
-                        if (usuarioASeguir != null) {
+                        if (userASeguir != null) {
 
-                            System.out.println("Ahora sigues a " + usuarioASeguir.getNombre());
+                            System.out.println("Ahora sigues a " + userASeguir.getName());
                         } else {
                             System.out.println("Usuario no encontrado.");
                         }
@@ -94,11 +104,11 @@ public class App {
                     case 4: {
                         System.out.print("¿A quién desea dejar de seguir?");
                         String nombreDejarSeguir = scanner.nextLine();
-                        Usuario usuarioADejarSeguir = redSocial.buscarUsuario(nombreDejarSeguir);
+                        User userADejarSeguir = redSocial.buscarUsuario(nombreDejarSeguir);
 
-                        if (usuarioADejarSeguir != null) {
-                            redSocial.getActiveUser().dejarDeSeguir(usuarioADejarSeguir);
-                            System.out.println("Has dejado de seguir a " + usuarioADejarSeguir.getNombre());
+                        if (userADejarSeguir != null) {
+                            redSocial.getActiveUser().unfollow(userADejarSeguir);
+                            System.out.println("Has dejado de seguir a " + userADejarSeguir.getName());
                         } else {
                             System.out.println("Usuario no encontrado.");
                         }
@@ -118,8 +128,8 @@ public class App {
                             case 1:
                                 System.out.print("Contenido del texto: ");
                                 String contenido = scanner.nextLine();
-                                Post textoPost = new Texto(contenido);
-                                redSocial.getActiveUser().agregarPost(textoPost);
+                                Post textoPost = new Text(contenido);
+                                redSocial.getActiveUser().addPost(textoPost);
                                 System.out.println("Post de texto agregado.");
                                 break;
 
@@ -130,8 +140,8 @@ public class App {
                                 int ancho = scanner.nextInt();
                                 System.out.print("Alto de la imagen: ");
                                 int alto = scanner.nextInt();
-                                Post imagenPost = new Imagen(tituloImagen, ancho, alto);
-                                redSocial.getActiveUser().agregarPost(imagenPost);
+                                Post imagenPost = new Image(tituloImagen, ancho, alto);
+                                redSocial.getActiveUser().addPost(imagenPost);
                                 System.out.println("Post de imagen agregado.");
                                 break;
 
@@ -143,7 +153,7 @@ public class App {
                                 System.out.print("Duración en segundos: ");
                                 int duracion = scanner.nextInt();
                                 Post videoPost = new Video(tituloVideo, calidad, duracion);
-                                redSocial.getActiveUser().agregarPost(videoPost);
+                                redSocial.getActiveUser().addPost(videoPost);
                                 System.out.println("Post de video agregado.");
                                 break;
 
@@ -157,18 +167,18 @@ public class App {
                         if (redSocial.getActiveUser() != null) {
                             System.out.print("Nombre del usuario del post a comentar: ");
                             String nombreUsuarioACom = scanner.nextLine();
-                            Usuario usuario = redSocial.buscarUsuario(nombreUsuarioACom);
+                            User user = redSocial.buscarUsuario(nombreUsuarioACom);
 
-                            if (usuario != null) {
+                            if (user != null) {
                                 System.out.println("Seleccione el número del post:");
-                                for (int i = 0; i < usuario.getPosts().size(); i++) {
-                                    System.out.println(i + ": " + usuario.getPosts().get(i));
+                                for (int i = 0; i < user.getPosts().size(); i++) {
+                                    System.out.println(i + ": " + user.getPosts().get(i));
                                 }
                                 int postIndex = scanner.nextInt();
                                 scanner.nextLine();
 
-                                if (postIndex >= 0 && postIndex < usuario.getPosts().size()) {
-                                    Post post = usuario.getPosts().get(postIndex);
+                                if (postIndex >= 0 && postIndex < user.getPosts().size()) {
+                                    Post post = user.getPosts().get(postIndex);
                                     System.out.print("Escribe el comentario: ");
                                     String textoComentario = scanner.nextLine();
                                     Comentario comentario = new Comentario(textoComentario, redSocial.getActiveUser());
@@ -189,9 +199,9 @@ public class App {
                     case 7: {
                         System.out.print("¿De qué usuario quiere ver post?");
                         String nombreUsuarioListarPost = scanner.nextLine();
-                        Usuario usuario = redSocial.buscarUsuario(nombreUsuarioListarPost);
-                        if (usuario != null) {
-                            redSocial.listarPosts(usuario);
+                        User user = redSocial.buscarUsuario(nombreUsuarioListarPost);
+                        if (user != null) {
+                            redSocial.listPosts(user);
                         } else {
                             System.out.println("Usuario no encontrado.");
                         }
@@ -206,17 +216,17 @@ public class App {
                     case 9: {
                         System.out.print("¿De qué usuario quiere consultar post? ");
                         String nombreUsuarioContar = scanner.nextLine();
-                        Usuario usuario = redSocial.buscarUsuario(nombreUsuarioContar);
+                        User user = redSocial.buscarUsuario(nombreUsuarioContar);
 
-                        if (usuario != null) {
+                        if (user != null) {
                             System.out.println("Seleccione el número del post:");
-                            for (int i = 0; i < usuario.getPosts().size(); i++) {
-                                System.out.println(i + ": " + usuario.getPosts().get(i));
+                            for (int i = 0; i < user.getPosts().size(); i++) {
+                                System.out.println(i + ": " + user.getPosts().get(i));
                             }
                             int postIndex = scanner.nextInt();
 
-                            if (postIndex >= 0 && postIndex < usuario.getPosts().size()) {
-                                Post post = usuario.getPosts().get(postIndex);
+                            if (postIndex >= 0 && postIndex < user.getPosts().size()) {
+                                Post post = user.getPosts().get(postIndex);
                                 System.out.println("El número de comentarios en el post es: " + post.contarComentarios());
                             } else {
                                 System.out.println("Número de post no válido.");
@@ -228,17 +238,18 @@ public class App {
                     break;
                     //Mostrar usuarios
                     case 10: {
-                        redSocial.mostrarUsuarios();
+                        redSocial.showUsers();
                         break;
                     }
                     //Mostrar usuarios seguidos
                     case 11: {
-                        redSocial.getActiveUser().mostrarUsuariosSeguidos();
+                        redSocial.getActiveUser().showFollowUsers();
                         break;
                     }
                     case 12: {
                         redSocial.logOut();
-                        break;
+                        opcion=13;
+
                     }
                     //Salir
                     case 13: {

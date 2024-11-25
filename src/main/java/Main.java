@@ -3,6 +3,6 @@ public class Main {
         RedSocial redSocial = new RedSocial();
         App app = new App();
         redSocial.popularRedSocial();
-        app.logMenu();
+        app.logMenu(redSocial);
     }
 }

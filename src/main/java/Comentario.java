@@ -1,30 +1,30 @@
 import java.util.Date;
 
 public class Comentario {
-    private String texto;
-    private Date fecha;
-    private Usuario propietario;
+    private String text;
+    private Date date;
+    private User author;
 
-    public Comentario(String texto, Usuario propietario) {
-        this.texto = texto;
-        this.fecha = new Date();
-        this.propietario = propietario;
+    public Comentario(String text, User author) {
+        this.text = text;
+        this.date = new Date();
+        this.author = author;
     }
 
-    public String getTexto() {
-        return texto;
+    public String getText() {
+        return text;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public Date getDate() {
+        return date;
     }
 
-    public Usuario getPropietario() {
-        return propietario;
+    public User getAuthor() {
+        return author;
     }
 
     @Override
     public String toString() {
-        return propietario.getNombre() + ": " + texto;
+        return author.getName() + ": " + text;
     }
 }

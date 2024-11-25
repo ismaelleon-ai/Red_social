@@ -1,22 +1,22 @@
 public class Video extends Post {
-    private String titulo;
-    private int calidad;
-    private int duracion;
+    private String title;
+    private int quality;
+    private int duration;
 
-    public Video(String titulo, int calidad, int duracion) {
+    public Video(String title, int quality, int duration) {
         super();
-        this.titulo = titulo;
-        this.calidad = calidad;
-        this.duracion = duracion;
+        this.title = title;
+        this.quality = quality;
+        this.duration = duration;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getTitle() {
+        return title;
     }
 
     @Override
     public String toString() {
-        return "Video: " + titulo + " (" + calidad + "p, " + duracion + "mins)";
+        return "Video: " + title + " (" + quality + "p, " + duration + "mins)";
     }
 }
 

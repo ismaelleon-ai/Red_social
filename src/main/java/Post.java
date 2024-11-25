@@ -3,31 +3,31 @@ import java.util.Date;
 import java.util.List;
 
 public abstract class Post {
-    private Date fecha;
-    private List<Comentario> comentarios;
+    private Date date;
+    private List<Comentario> comments;
 
     public Post() {
-        this.fecha = new Date();
-        this.comentarios = new ArrayList<>();
+        this.date = new Date();
+        this.comments = new ArrayList<>();
     }
 
-    public Date getFecha() {
-        return fecha;
+    public Date getDate() {
+        return date;
     }
 
-    public List<Comentario> getComentarios() {
-        return comentarios;
+    public List<Comentario> getComments() {
+        return comments;
     }
 
     public void agregarComentario(Comentario comentario) {
-        comentarios.add(comentario);
+        comments.add(comentario);
     }
 
     public void eliminarComentario(Comentario comentario) {
-        comentarios.remove(comentario);
+        comments.remove(comentario);
     }
 
     public int contarComentarios() {
-        return comentarios.size();
+        return comments.size();
     }
 }
