@@ -7,6 +7,7 @@
     <list default="true" id="eb061b1f-3f96-4e4f-87e9-22c54964e64a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/RedSocial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RedSocial.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +54,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "L:/MÁSTER/workspace/hr"
+    "last_opened_file_path": "L:/MÁSTER/workspace/java-26-ismaelleon-ai"
   }
 }]]></component>
   <component name="RunManager" selected="Application.Main">
