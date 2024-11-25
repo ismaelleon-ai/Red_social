@@ -24,7 +24,7 @@ public class User {
         return posts;
     }
 
-    public void seguir(User user) {
+    public void follow (User user) {
         if (!follow.contains(user)) {
             follow.add(user);
         }

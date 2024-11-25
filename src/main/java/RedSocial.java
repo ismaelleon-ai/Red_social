@@ -88,7 +88,7 @@ public class RedSocial {
     }
 
     public void addUsers(User user) {
-        if (existeUsuario(user.getName())) {
+        if (usersExist(user.getName())) {
             System.out.println("El usuario \"" + user.getName() + "\" ya existe en la red social. No se puede añadir.");
         } else {
             users.add(user);
@@ -96,7 +96,7 @@ public class RedSocial {
         }
     }
 
-    public boolean existeUsuario(String nombre) {
+    public boolean usersExist (String nombre) {
         for (User user : users) {
             if (user.getName().equals(nombre)) {
                 return true;
@@ -118,13 +118,13 @@ public class RedSocial {
         return null;
     }
 
-    public void listPosts(User user) {
+    public void listPosts (User user) {
         for (Post post : user.getPosts()) {
             System.out.println(post);
         }
     }
 
-    public void listarComentarios(User userAutenticado) {
+    public void listComments (User userAutenticado) {
 
         for (User user : users) {
             for (Post post : user.getPosts()) {

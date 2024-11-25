@@ -93,7 +93,7 @@ public class App {
                         User userASeguir = redSocial.buscarUsuario(nombreSeguir);
 
                         if (userASeguir != null) {
-
+                            redSocial.getActiveUser().follow(userASeguir);
                             System.out.println("Ahora sigues a " + userASeguir.getName());
                         } else {
                             System.out.println("Usuario no encontrado.");
@@ -209,7 +209,7 @@ public class App {
                     }
                     //Listar comentarios
                     case 8: {
-                        redSocial.listarComentarios(redSocial.getActiveUser());
+                        redSocial.listComments(redSocial.getActiveUser());
                         break;
                     }
                     //Contar comentarios
