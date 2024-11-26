@@ -197,15 +197,7 @@ public class App {
                     }
                     //Listar post
                     case 7: {
-                        System.out.print("¿De qué usuario quiere ver post?");
-                        String nombreUsuarioListarPost = scanner.nextLine();
-                        User user = redSocial.buscarUsuario(nombreUsuarioListarPost);
-                        if (user != null) {
-                            redSocial.listPosts(user);
-                        } else {
-                            System.out.println("Usuario no encontrado.");
-                        }
-                        break;
+                        redSocial.listPosts(redSocial.getActiveUser());
                     }
                     //Listar comentarios
                     case 8: {

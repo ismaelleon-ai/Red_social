@@ -119,8 +119,30 @@ public class RedSocial {
     }
 
     public void listPosts (User user) {
-        for (Post post : user.getPosts()) {
-            System.out.println(post);
+        if (user.getFollow().isEmpty()) {
+            System.out.println("Primero siga a un usuario!! ");
+        }
+        List<Post> feed = new ArrayList<>();
+        for (User follow : user.getFollow()) {
+            feed.addAll(follow.getPosts());
+        }
+        if (feed.isEmpty()) {
+            System.out.println("No hay posts en el feed.");
+        } else {
+            for (int i = 0; i < feed.size(); i++) {
+                Post post = feed.get(i);
+                System.out.println((i) + ". " + post + " " + "(" + post.getDate() + ")");
+
+                List<Comentario> comments = post.getComments();
+                if (!comments.isEmpty()) {
+                    System.out.println("  Comentarios:");
+                    for (Comentario comment : comments) {
+                        System.out.println("    - " + comment);
+                    }
+                } else {
+                    System.out.println("  No hay comentarios en este post.");
+                }
+            }
         }
     }
 
